@@ -6,6 +6,8 @@ factorial x = product [1..x]
 
 average xs = sum xs `div` length xs
 
+square x = x * x
+
 append xs ys = xs ++ ys
 
 mylast1 xs = xs !! (length xs - 1)
@@ -25,3 +27,9 @@ pair x y = (x, y)
 palindrome xs = reverse xs == xs
 
 twice f x = f (f x) 
+
+mean xs = sum xs / fromIntegral (length xs)
+
+variance xs = let avg = mean xs
+              in sum (map (\x -> (x - avg) ^ 2) xs) / fromIntegral (length xs)
+
