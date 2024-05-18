@@ -1,0 +1,285 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide,amssymb,epsfig,latexsym,multicol,array,hhline,fancyhdr}
+\usepackage[utf8]{vietnam}
+\usepackage[vietnamese,english]{babel}
+% Embed code
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\usepackage{amsmath}
+\usepackage{lastpage}
+\usepackage[lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{enumerate}
+\usepackage{color}
+\parindent 0pt
+\usepackage{graphicx}							% Standard graphics package
+\usepackage{array}
+\usepackage{float}
+\usepackage{tabularx, caption}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{graphics}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usetikzlibrary{arrows,snakes,backgrounds}
+\usepackage{hyperref}
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
+%\usepackage{pstcol} 								% PSTricks with the standard color package
+
+\newtheorem{theorem}{{\bf Theorem}}
+\newtheorem{property}{{\bf Property}}
+\newtheorem{proposition}{{\bf Proposition}}
+\newtheorem{corollary}[proposition]{{\bf Corollary}}
+\newtheorem{lemma}[proposition]{{\bf Lemma}}
+
+\AtBeginDocument{\renewcommand*\contentsname{Contents}}
+\AtBeginDocument{\renewcommand*\refname{References}}
+%\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+    \put(0,-8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+    %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
+   \end{picture}&
+	%\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily University of Technology, Ho Chi Minh City}\\
+		\textbf{\bf \ttfamily Faculty of Computer Science and Engineering}
+	\end{tabular} 	
+ \end{tabular}
+}
+\fancyhead[R]{
+	\begin{tabular}{l}
+		\tiny \bf \\
+		\tiny \bf 
+	\end{tabular}  }
+\fancyfoot{} % clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily Assignment for Advanced Programming - Academic year 2023 - 2024}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+
+%%%
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\makeatletter
+\newcounter {subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection .\@alph\c@subsubsubsection}
+\newcommand\subsubsubsection{\@startsection{subsubsubsection}{4}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\newcommand*\l@subsubsubsection{\@dottedtocline{3}{10.0em}{4.1em}}
+\newcommand*{\subsubsubsectionmark}[1]{}
+\makeatother
+
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+VIETNAM NATIONAL UNIVERSITY, HO CHI MINH CITY \\
+UNIVERSITY OF TECHNOLOGY \\
+FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+\end{center}
+
+\vspace{1cm}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=3cm]{hcmut.png}
+\end{center}
+\end{figure}
+
+\vspace{1cm}
+
+
+\begin{center}
+\begin{tabular}{c}
+\multicolumn{1}{l}{\textbf{{\Large ADVANCED PROGRAMMING (CO2039)}}}\\
+~~\\
+\hline
+\\
+\multicolumn{1}{l}{\textbf{{Assignment (Semester: 232)}}}\\
+\\
+\textbf{{\Huge Functional Programming}}\\
+\\
+\textbf{{\Huge in Python}}\\[10pt]
+
+\multicolumn{1}{l}{}\\
+\\
+\hline
+\end{tabular}
+\end{center}
+\vspace{2cm}
+
+\begin{table}[h]
+	\begin{tabular}{rrl}
+		\hspace{5 cm} & Advisor: & Trần Tuấn Anh, CSE-HCMUT\\[6pt]
+		& Students: & Trần Đình Đăng Khoa \hspace*{0.05cm} - 2211649. \\
+	\end{tabular}
+\end{table}
+
+\vspace*{1cm}
+
+\begin{center}
+{\footnotesize HO CHI MINH CITY, MAY 2024}
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+Functional programming (FP) is a programming paradigm that has gained significant traction in both academic and professional settings due to its powerful abstraction capabilities and emphasis on immutability and first-class functions. Unlike imperative programming, which is centered around changing state and iterating over instructions, functional programming treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data.\\
+
+Python, traditionally known as an imperative and object-oriented language, has incorporated several functional programming features that make it suitable for this paradigm. Python supports first-class functions, allowing functions to be treated as any other object, passed as arguments, and returned from other functions. Higher-order functions, which take other functions as parameters or return them as results, are also integral to Python. Furthermore, Python's lambda expressions facilitate the creation of anonymous functions, enabling succinct and expressive code.\\
+
+The purpose of this report is to explore the application of functional programming principles in Python. We will delve into key functional programming concepts supported by Python, including first-class functions, higher-order functions, and lambda expressions. Additionally, we will demonstrate how to create a functional program in Python through a practical example that processes a list of numbers using map, filter, and reduce functions.\\
+
+\newpage
+
+
+\section{Python as a Functional Programming Language}
+Python, while primarily an imperative and object-oriented language, provides several features that facilitate functional programming. These include first-class functions, higher-order functions, anonymous functions (lambdas), and a rich standard library that supports functional constructs.\\
+
+\subsection{First-Class Functions}
+In Python, functions are first-class citizens. This means that functions can be assigned to variables, passed as arguments to other functions, and returned as values from other functions.\\
+
+\begin{lstlisting}[language=Python, caption=First-Class Functions]
+def add(x, y):
+    return x + y
+
+f = add
+print(f(2, 3))  # Output: 5
+\end{lstlisting}
+
+First-class functions are fundamental to functional programming as they allow for higher-order functions and functional composition. By assigning the function `add` to the variable `f`, we demonstrate that functions in Python can be manipulated like any other object. This allows for flexible and dynamic function usage, promoting code reuse and modularity.\\
+
+\subsection{Higher-Order Functions}
+Higher-order functions are functions that take other functions as arguments or return functions as their result. They are essential for functional programming as they enable the creation of more abstract and reusable code.\\
+
+\begin{lstlisting}[language=Python, caption=Higher-Order Functions]
+def apply_function(f, x, y):
+    return f(x, y)
+
+result = apply_function(add, 5, 10)
+print(result)  # Output: 15
+\end{lstlisting}
+
+In this example, \texttt{apply\_function} is a higher-order function because it takes another function \texttt{f} as an argument. This allows us to pass different functions to \texttt{apply\_function}, making it highly versatile. Higher-order functions are powerful tools for building abstractions and composing behavior in a clean and readable way.\\
+
+\subsection{Anonymous Functions (Lambdas)}
+Python supports anonymous functions through the \texttt{lambda} keyword. These are useful for short, throwaway functions that are not reused elsewhere.\\
+
+\begin{lstlisting}[language=Python, caption=Anonymous Functions (Lambdas)]
+square = lambda x: x * x
+print(square(4))  # Output: 16
+\end{lstlisting}
+
+Lambda functions provide a concise way to define simple functions inline. They are particularly useful for functional programming constructs like \texttt{map}, \texttt{filter}, and \texttt{reduce}, where small functions are often passed as arguments. Despite their brevity, lambda functions can be used effectively to create clear and expressive code.\\
+
+\section{Creating a Functional Program in Python}
+We will create a functional program that processes a list of numbers. The program will filter out even numbers, square the remaining numbers, and then sum them up. This will demonstrate the use of \texttt{map}, \texttt{filter}, and \texttt{reduce} functions.\\
+
+\subsection{Implementation}
+
+\begin{lstlisting}[language=Python, caption=Functional Program Demo]
+from functools import reduce
+
+# List of numbers
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Filter out even numbers
+odd_numbers = list(filter(lambda x: x % 2 != 0, numbers))
+
+# Square the remaining numbers
+squared_numbers = list(map(lambda x: x * x, odd_numbers))
+
+# Sum the squared numbers
+sum_of_squares = reduce(lambda x, y: x + y, squared_numbers)
+
+print(f"The sum of squares of odd numbers is: {sum_of_squares}")
+\end{lstlisting}
+
+\subsection{Explanation}
+This program showcases the core functional programming concepts in Python:
+
+\begin{enumerate}
+    \item Filtering with \texttt{filter}:
+    \begin{lstlisting}[language=Python]
+odd_numbers = list(filter(lambda x: x % 2 != 0, numbers)) \end{lstlisting}
+    - The \texttt{filter} function constructs an iterator from elements of the iterable (in this case, the list \texttt{numbers}) for which the function \texttt{lambda x: x \% 2 != 0} returns \texttt{True}.\\
+    - This lambda function checks if a number is odd by computing the remainder of the division by 2.\\
+    - The \texttt{list} constructor is used to convert the resulting iterator back into a list, containing only the odd numbers.\\
+
+    \item Mapping with \texttt{map}:
+    \begin{lstlisting}[language=Python]
+squared_numbers = list(map(lambda x: x * x, odd_numbers)) \end{lstlisting}
+    - The \texttt{map} function applies the function \texttt{lambda x: x * x} to each item of the iterable (the list \texttt{odd\_numbers}).\\
+    - This lambda function squares its input.\\
+    - Again, the \texttt{list} constructor is used to convert the map object into a list of squared numbers.\\
+
+    \item Reducing with \texttt{reduce}:
+    \begin{lstlisting}[language=Python]
+sum_of_squares = reduce(lambda x, y: x + y, squared_numbers) \end{lstlisting}
+    - The \texttt{reduce} function from the \texttt{functools} module applies the function \texttt{lambda x, y: x + y} cumulatively to the items of the iterable (the list \texttt{squared\_numbers}), from left to right, so as to reduce the iterable to a single value.\\
+    - This lambda function sums two numbers.\\
+    - The result is the sum of all squared numbers in the list.\\
+\end{enumerate}
+
+
+These functional constructs — \texttt{filter}, \texttt{map}, \texttt{and} \texttt{reduce} — are powerful tools for data transformation and aggregation, allowing for clear and expressive code. The use of lambda functions in these constructs further enhances the readability and conciseness of the code, making it easy to understand the operations being performed on the data.
+
+
+\newpage
+\section{Conclusion}
+Functional programming is an essential paradigm that brings numerous benefits to software development, including improved modularity, easier reasoning about code, and a higher level of abstraction. Although Python is predominantly an imperative and object-oriented language, it effectively incorporates functional programming constructs, making it a versatile tool for developers.\\
+
+By leveraging first-class functions, higher-order functions, and anonymous functions, Python enables the creation of concise and expressive functional programs. This report demonstrated how these features can be utilized to process a list of numbers in a functional style, showcasing the elegance and power of functional programming in Python.\\
+
+The example provided illustrates the functional programming principles of immutability and function composition, highlighting Python's capability to support these concepts. As the software industry continues to evolve, the ability to blend multiple programming paradigms within a single language becomes increasingly valuable. Python's support for functional programming enhances its flexibility and applicability across various domains and problem sets.\\
+
+Future work could explore more advanced functional programming techniques in Python, such as currying, memoization, and functional data structures. Additionally, integrating functional programming with Python's rich ecosystem of libraries can further enhance its utility in real-world applications.\\
+
+
+\newpage
+\section{References}
+\begin{itemize}
+    \item \href{https://docs.python.org/3/howto/functional.html}{Python Functional Programming HOWTO}
+    \item \href{https://realpython.com/python-functional-programming/}{Real Python - Functional Programming in Python}
+    \item \href{https://en.wikipedia.org/wiki/Functional\_programming}{Wikipedia - Functional Programming}
+\end{itemize}
+
+\end{document}
