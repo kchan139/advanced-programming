@@ -177,11 +177,11 @@ Python, while primarily an imperative and object-oriented language, provides sev
 In Python, functions are first-class citizens. This designation means that functions can be assigned to variables, passed as arguments to other functions, and returned as values from other functions.\\
 
 \begin{lstlisting}[language=Python, caption=First-Class Functions]
-def add(x, y):
-    return x + y
+    def add(x, y):
+        return x + y
 
-f = add
-print(f(2, 3))  # Output: 5
+    f = add
+    print(f(2, 3))  # Output: 5
 \end{lstlisting}
 
 First-class functions are fundamental to functional programming as they allow for higher-order functions and functional composition. By assigning the function `add` to the variable `f`, we demonstrate that functions in Python can be manipulated like any other object. This capability allows for flexible and dynamic function usage, promoting code reuse and modularity.\\
@@ -190,11 +190,11 @@ First-class functions are fundamental to functional programming as they allow fo
 Higher-order functions are functions that take other functions as arguments or return functions as their result. They are essential for functional programming as they enable the creation of more abstract and reusable code.\\
 
 \begin{lstlisting}[language=Python, caption=Higher-Order Functions]
-def apply_function(f, x, y):
-    return f(x, y)
+    def apply_function(f, x, y):
+        return f(x, y)
 
-result = apply_function(add, 5, 10)
-print(result)  # Output: 15
+    result = apply_function(add, 5, 10)
+    print(result)  # Output: 15
 \end{lstlisting}
 
 In this example, \texttt{apply\_function} is a higher-order function because it takes another function \texttt{f} as an argument. This allows us to pass different functions to \texttt{apply\_function}, making it highly versatile. Higher-order functions are powerful tools for building abstractions and composing behavior in a clean and readable way.\\
@@ -203,8 +203,8 @@ In this example, \texttt{apply\_function} is a higher-order function because it 
 Python supports anonymous functions through the \texttt{lambda} keyword. These functions are useful for short, throwaway functions that are not reused elsewhere.\\
 
 \begin{lstlisting}[language=Python, caption=Anonymous Functions (Lambdas)]
-square = lambda x: x * x
-print(square(4))  # Output: 16
+    square = lambda x: x * x
+    print(square(4))  # Output: 16
 \end{lstlisting}
 
 Lambda functions provide a concise way to define simple functions inline. They are particularly useful for functional programming constructs like \texttt{map}, \texttt{filter}, and \texttt{reduce}, where small functions are often passed as arguments. Despite their brevity, lambda functions can be used effectively to create clear and expressive code.\\
@@ -215,21 +215,21 @@ We will create a functional program that processes a list of numbers. The progra
 \subsection{Implementation}
 
 \begin{lstlisting}[language=Python, caption=Functional Program Demo]
-from functools import reduce
+    from functools import reduce
 
-# List of numbers
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    # List of numbers
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-# Filter out even numbers
-odd_numbers = list(filter(lambda x: x % 2 != 0, numbers))
+    # Filter out even numbers
+    odd_numbers = list(filter(lambda x: x % 2 != 0, numbers))
 
-# Square the remaining numbers
-squared_numbers = list(map(lambda x: x * x, odd_numbers))
+    # Square the remaining numbers
+    squared_numbers = list(map(lambda x: x * x, odd_numbers))
 
-# Sum the squared numbers
-sum_of_squares = reduce(lambda x, y: x + y, squared_numbers)
+    # Sum the squared numbers
+    sum_of_squares = reduce(lambda x, y: x + y, squared_numbers)
 
-print(f"The sum of squares of odd numbers is: {sum_of_squares}")
+    print(f"The sum of squares of odd numbers is: {sum_of_squares}")
 \end{lstlisting}
 
 \subsection{Explanation}
@@ -238,21 +238,21 @@ This program showcases the core functional programming concepts in Python:
 \begin{enumerate}
     \item Filtering with \texttt{filter}:
     \begin{lstlisting}[language=Python]
-odd_numbers = list(filter(lambda x: x % 2 != 0, numbers)) \end{lstlisting}
+    odd_numbers = list(filter(lambda x: x % 2 != 0, numbers)) \end{lstlisting}
     - The \texttt{filter} function constructs an iterator from elements of the iterable (in this case, the list \texttt{numbers}) for which the function \texttt{lambda x: x \% 2 != 0} returns \texttt{True}.\\
     - This lambda function checks if a number is odd by computing the remainder of the division by 2.\\
     - The \texttt{list} constructor is used to convert the resulting iterator back into a list, containing only the odd numbers.\\
 
     \item Mapping with \texttt{map}:
     \begin{lstlisting}[language=Python]
-squared_numbers = list(map(lambda x: x * x, odd_numbers)) \end{lstlisting}
+    squared_numbers = list(map(lambda x: x * x, odd_numbers)) \end{lstlisting}
     - The \texttt{map} function applies the function \texttt{lambda x: x * x} to each item of the iterable (the list \texttt{odd\_numbers}).\\
     - This lambda function squares its input.\\
     - Again, the \texttt{list} constructor is used to convert the map object into a list of squared numbers.\\
 
     \item Reducing with \texttt{reduce}:
     \begin{lstlisting}[language=Python]
-sum_of_squares = reduce(lambda x, y: x + y, squared_numbers) \end{lstlisting}
+    sum_of_squares = reduce(lambda x, y: x + y, squared_numbers) \end{lstlisting}
     - The \texttt{reduce} function from the \texttt{functools} module applies the function \texttt{lambda x, y: x + y} cumulatively to the items of the iterable (the list \texttt{squared\_numbers}), from left to right, so as to reduce the iterable to a single value.\\
     - This lambda function sums two numbers.\\
     - The result is the sum of all squared numbers in the list.\\
@@ -269,20 +269,20 @@ While the foundational concepts of functional programming in Python are powerful
 Currying is a technique where a function is transformed into a sequence of functions, each taking a single argument. This allows for partial application of functions, which can lead to more flexible and reusable code.
 
 \begin{lstlisting}[language=Python, caption=Currying Example]
-def curry(f):
-    def curried_function(*args):
-        if len(args) == f.__code__.co_argcount:
-            return f(*args)
-        return lambda *more_args: curried_function(*(args + more_args))
-    return curried_function
+    def curry(f):
+        def curried_function(*args):
+            if len(args) == f.__code__.co_argcount:
+                return f(*args)
+            return lambda *more_args: curried_function(*(args + more_args))
+        return curried_function
 
-@curry
-def add_three_numbers(a, b, c):
-    return a + b + c
+    @curry
+    def add_three_numbers(a, b, c):
+        return a + b + c
 
-add_five = add_three_numbers(2, 3)
-result = add_five(4)  # Output: 9
-print(result)
+    add_five = add_three_numbers(2, 3)
+    result = add_five(4)  # Output: 9
+    print(result)
 \end{lstlisting}
 
 In this example, the \texttt{curry} decorator transforms \texttt{add\_three\_numbers} into a curried function. The curried function can be partially applied, enabling flexible and modular code composition.
@@ -291,21 +291,21 @@ In this example, the \texttt{curry} decorator transforms \texttt{add\_three\_num
 Memoization is an optimization technique that stores the results of expensive function calls and returns the cached result when the same inputs occur again. This is particularly useful in recursive functions and dynamic programming.
 
 \begin{lstlisting}[language=Python, caption=Memoization Example]
-def memoize(f):
-    cache = {}
-    def memoized_function(*args):
-        if args not in cache:
-            cache[args] = f(*args)
-        return cache[args]
-    return memoized_function
+    def memoize(f):
+        cache = {}
+        def memoized_function(*args):
+            if args not in cache:
+                cache[args] = f(*args)
+            return cache[args]
+        return memoized_function
 
-@memoize
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
+    @memoize
+    def fibonacci(n):
+        if n <= 1:
+            return n
+        return fibonacci(n-1) + fibonacci(n-2)
 
-    print(fibonacci(10))  # Output: 55
+        print(fibonacci(10))  # Output: 55
 \end{lstlisting}
 
 In this example, the \texttt{memoize} decorator caches the results of the \texttt{fibonacci} function. By doing so, it prevents redundant calculations and significantly enhances performance, particularly for functions with overlapping subproblems like the Fibonacci sequence.
@@ -314,18 +314,18 @@ In this example, the \texttt{memoize} decorator caches the results of the \textt
 Functional data structures are immutable data structures that can be used in a functional programming style. Python's standard library includes several data structures that support immutability, such as tuples and frozensets. Additionally, third-party libraries like `pyrsistent` provide more advanced immutable data structures.
 
 \begin{lstlisting}[language=Python, caption=Functional Data Structures Example]
-from pyrsistent import pvector
+    from pyrsistent import pvector
 
-# Create an immutable vector
-vec = pvector([1, 2, 3])
-print(vec)  # Output: pvector([1, 2, 3])
+    # Create an immutable vector
+    vec = pvector([1, 2, 3])
+    print(vec)  # Output: pvector([1, 2, 3])
 
-# Add an element
-new_vec = vec.append(4)
-print(new_vec)  # Output: pvector([1, 2, 3, 4])
+    # Add an element
+    new_vec = vec.append(4)
+    print(new_vec)  # Output: pvector([1, 2, 3, 4])
 
-# Original vector remains unchanged
-print(vec)  # Output: pvector([1, 2, 3])
+    # Original vector remains unchanged
+    print(vec)  # Output: pvector([1, 2, 3])
 \end{lstlisting}
 
 In this example, `pyrsistent`'s `pvector` is used to create an immutable vector. Operations on the vector, such as appending an element, return a new vector without modifying the original one, thereby preserving immutability.
@@ -336,36 +336,36 @@ To illustrate the power of combining these advanced functional programming techn
 \subsection{Pipeline Implementation}
 
 \begin{lstlisting}[language=Python, caption=Functional Data Processing Pipeline]
-from functools import partial
+    from functools import partial
 
-# Sample data: list of dictionaries
-data = [
-    {'name': 'Alice', 'age': 30, 'salary': 70000},
-    {'name': 'Bob', 'age': 24, 'salary': 48000},
-    {'name': 'Charlie', 'age': 36, 'salary': 120000},
-    {'name': 'Diana', 'age': 28, 'salary': 60000},
-]
+    # Sample data: list of dictionaries
+    data = [
+        {'name': 'Alice', 'age': 30, 'salary': 70000},
+        {'name': 'Bob', 'age': 24, 'salary': 48000},
+        {'name': 'Charlie', 'age': 36, 'salary': 120000},
+        {'name': 'Diana', 'age': 28, 'salary': 60000},
+    ]
 
-# Function to filter employees by age
-def filter_by_age(min_age, person):
-    return person['age'] >= min_age
+    # Function to filter employees by age
+    def filter_by_age(min_age, person):
+        return person['age'] >= min_age
 
-# Function to transform data to extract salaries
-def extract_salary(person):
-    return person['salary']
+    # Function to transform data to extract salaries
+    def extract_salary(person):
+        return person['salary']
 
-# Function to calculate average
-def average(salaries):
-    return sum(salaries) / len(salaries) if salaries else 0
+    # Function to calculate average
+    def average(salaries):
+        return sum(salaries) / len(salaries) if salaries else 0
 
-# Partial application of filter function
-filter_adults = partial(filter_by_age, 30)
+    # Partial application of filter function
+    filter_adults = partial(filter_by_age, 30)
 
-# Functional pipeline
-adult_salaries = map(extract_salary, filter(filter_adults, data))
-average_salary = average(list(adult_salaries))
+    # Functional pipeline
+    adult_salaries = map(extract_salary, filter(filter_adults, data))
+    average_salary = average(list(adult_salaries))
 
-print(f"The average salary of employees aged 30 and above is: {average_salary}")
+    print(f"The average salary of employees aged 30 and above is: {average_salary}")
 \end{lstlisting}
 
 \subsection{Explanation}
@@ -374,19 +374,19 @@ This pipeline demonstrates several key functional programming concepts:
 \begin{enumerate}
     \item \textbf{Filtering with Partially Applied Functions}:
     \begin{lstlisting}[language=Python]
-filter_adults = partial(filter_by_age, 30)
+    filter_adults = partial(filter_by_age, 30)
 \end{lstlisting}
     - Here, the `filter\_by\_age` function is partially applied with the minimum age set to 30 using `partial` from the `functools` module. This creates a new function, `filter\_adults`, that can be used to filter out individuals below the age of 30.
 
     \item \textbf{Mapping with Extracted Functions}:
     \begin{lstlisting}[language=Python]
-adult_salaries = map(extract_salary, filter(filter_adults, data))
+    adult_salaries = map(extract_salary, filter(filter_adults, data))
 \end{lstlisting}
     - The `map` function is used to apply `extract\_salary` to each item in the filtered list, resulting in an iterator of salaries for individuals aged 30 and above.
 
     \item \textbf{Aggregating with a Custom Average Function}:
     \begin{lstlisting}[language=Python]
-average_salary = average(list(adult_salaries))
+    average_salary = average(list(adult_salaries))
 \end{lstlisting}
     - The `average` function computes the mean salary from the list of salaries obtained from the `map` function. Converting the iterator to a list ensures all items are processed before calculating the average.
 
