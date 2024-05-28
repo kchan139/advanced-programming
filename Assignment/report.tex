@@ -146,7 +146,7 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 
 \begin{table}[h]
 	\begin{tabular}{rrl}
-		\hspace{5 cm} & Advisor: & Trần Tuấn Anh, CSE-HCMUT\\[6pt]
+		\hspace{5 cm} & Advisor: & Trương Tuấn Anh, CSE-HCMUT\\[6pt]
 		& Students: & Trần Đình Đăng Khoa \hspace*{0.05cm} - 2211649. \\
 	\end{tabular}
 \end{table}
@@ -162,20 +162,19 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 \newpage
 
 \section{Introduction}
-Functional programming (FP) is a programming paradigm that has gained significant traction in both academic and professional settings due to its powerful abstraction capabilities and emphasis on immutability and first-class functions. Unlike imperative programming, which is centered around changing state and iterating over instructions, functional programming treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data.\\
+Functional programming (FP) is a programming paradigm that has garnered significant attention in both academic and professional realms due to its potent abstraction capabilities and its emphasis on immutability and first-class functions. Unlike imperative programming, which revolves around changing state and iterating over instructions, functional programming conceptualizes computation as the evaluation of mathematical functions, eschewing changing state and mutable data.\\
 
-Python, traditionally known as an imperative and object-oriented language, has incorporated several functional programming features that make it suitable for this paradigm. Python supports first-class functions, allowing functions to be treated as any other object, passed as arguments, and returned from other functions. Higher-order functions, which take other functions as parameters or return them as results, are also integral to Python. Furthermore, Python's lambda expressions facilitate the creation of anonymous functions, enabling succinct and expressive code.\\
+Python, although traditionally recognized as an imperative and object-oriented language, has embraced several functional programming features, rendering it suitable for this paradigm. Python supports first-class functions, enabling functions to be treated as any other object, passed as arguments, and returned from other functions. Higher-order functions, which accept other functions as parameters or return them as results, are also integral to Python's functionality. Furthermore, Python's lambda expressions facilitate the creation of anonymous functions, allowing for succinct and expressive code.\\
 
-The purpose of this report is to explore the application of functional programming principles in Python. We will delve into key functional programming concepts supported by Python, including first-class functions, higher-order functions, and lambda expressions. Additionally, we will demonstrate how to create a functional program in Python through a practical example that processes a list of numbers using map, filter, and reduce functions.\\
+The purpose of this report is to explore the application of functional programming principles in Python. We will delve into key functional programming concepts supported by Python, including first-class functions, higher-order functions, and lambda expressions. Additionally, we will demonstrate how to create a functional program in Python through a practical example that processes a list of numbers using the map, filter, and reduce functions.\\
 
 \newpage
 
-
 \section{Python as a Functional Programming Language}
-Python, while primarily an imperative and object-oriented language, provides several features that facilitate functional programming. These include first-class functions, higher-order functions, anonymous functions (lambdas), and a rich standard library that supports functional constructs.\\
+Python, while primarily an imperative and object-oriented language, provides several features that facilitate functional programming. These features include first-class functions, higher-order functions, anonymous functions (lambdas), and a rich standard library that supports functional constructs.\\
 
 \subsection{First-Class Functions}
-In Python, functions are first-class citizens. This means that functions can be assigned to variables, passed as arguments to other functions, and returned as values from other functions.\\
+In Python, functions are first-class citizens. This designation means that functions can be assigned to variables, passed as arguments to other functions, and returned as values from other functions.\\
 
 \begin{lstlisting}[language=Python, caption=First-Class Functions]
 def add(x, y):
@@ -185,7 +184,7 @@ f = add
 print(f(2, 3))  # Output: 5
 \end{lstlisting}
 
-First-class functions are fundamental to functional programming as they allow for higher-order functions and functional composition. By assigning the function `add` to the variable `f`, we demonstrate that functions in Python can be manipulated like any other object. This allows for flexible and dynamic function usage, promoting code reuse and modularity.\\
+First-class functions are fundamental to functional programming as they allow for higher-order functions and functional composition. By assigning the function `add` to the variable `f`, we demonstrate that functions in Python can be manipulated like any other object. This capability allows for flexible and dynamic function usage, promoting code reuse and modularity.\\
 
 \subsection{Higher-Order Functions}
 Higher-order functions are functions that take other functions as arguments or return functions as their result. They are essential for functional programming as they enable the creation of more abstract and reusable code.\\
@@ -201,7 +200,7 @@ print(result)  # Output: 15
 In this example, \texttt{apply\_function} is a higher-order function because it takes another function \texttt{f} as an argument. This allows us to pass different functions to \texttt{apply\_function}, making it highly versatile. Higher-order functions are powerful tools for building abstractions and composing behavior in a clean and readable way.\\
 
 \subsection{Anonymous Functions (Lambdas)}
-Python supports anonymous functions through the \texttt{lambda} keyword. These are useful for short, throwaway functions that are not reused elsewhere.\\
+Python supports anonymous functions through the \texttt{lambda} keyword. These functions are useful for short, throwaway functions that are not reused elsewhere.\\
 
 \begin{lstlisting}[language=Python, caption=Anonymous Functions (Lambdas)]
 square = lambda x: x * x
@@ -262,6 +261,138 @@ sum_of_squares = reduce(lambda x, y: x + y, squared_numbers) \end{lstlisting}
 
 These functional constructs — \texttt{filter}, \texttt{map}, \texttt{and} \texttt{reduce} — are powerful tools for data transformation and aggregation, allowing for clear and expressive code. The use of lambda functions in these constructs further enhances the readability and conciseness of the code, making it easy to understand the operations being performed on the data.
 
+\newpage
+\section{Advanced Functional Programming Techniques in Python}
+While the foundational concepts of functional programming in Python are powerful on their own, more advanced techniques can further enhance the expressiveness and efficiency of Python code. This section will explore currying, memoization, and functional data structures, showcasing Python's versatility in supporting sophisticated functional programming methodologies.
+
+\subsection{Currying}
+Currying is a technique where a function is transformed into a sequence of functions, each taking a single argument. This allows for partial application of functions, which can lead to more flexible and reusable code.
+
+\begin{lstlisting}[language=Python, caption=Currying Example]
+def curry(f):
+    def curried_function(*args):
+        if len(args) == f.__code__.co_argcount:
+            return f(*args)
+        return lambda *more_args: curried_function(*(args + more_args))
+    return curried_function
+
+@curry
+def add_three_numbers(a, b, c):
+    return a + b + c
+
+add_five = add_three_numbers(2, 3)
+result = add_five(4)  # Output: 9
+print(result)
+\end{lstlisting}
+
+In this example, the \texttt{curry} decorator transforms \texttt{add\_three\_numbers} into a curried function. The curried function can be partially applied, enabling flexible and modular code composition.
+
+\subsection{Memoization}
+Memoization is an optimization technique that stores the results of expensive function calls and returns the cached result when the same inputs occur again. This is particularly useful in recursive functions and dynamic programming.
+
+\begin{lstlisting}[language=Python, caption=Memoization Example]
+def memoize(f):
+    cache = {}
+    def memoized_function(*args):
+        if args not in cache:
+            cache[args] = f(*args)
+        return cache[args]
+    return memoized_function
+
+@memoize
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+    print(fibonacci(10))  # Output: 55
+\end{lstlisting}
+
+In this example, the \texttt{memoize} decorator caches the results of the \texttt{fibonacci} function. By doing so, it prevents redundant calculations and significantly enhances performance, particularly for functions with overlapping subproblems like the Fibonacci sequence.
+
+\subsection{Functional Data Structures}
+Functional data structures are immutable data structures that can be used in a functional programming style. Python's standard library includes several data structures that support immutability, such as tuples and frozensets. Additionally, third-party libraries like `pyrsistent` provide more advanced immutable data structures.
+
+\begin{lstlisting}[language=Python, caption=Functional Data Structures Example]
+from pyrsistent import pvector
+
+# Create an immutable vector
+vec = pvector([1, 2, 3])
+print(vec)  # Output: pvector([1, 2, 3])
+
+# Add an element
+new_vec = vec.append(4)
+print(new_vec)  # Output: pvector([1, 2, 3, 4])
+
+# Original vector remains unchanged
+print(vec)  # Output: pvector([1, 2, 3])
+\end{lstlisting}
+
+In this example, `pyrsistent`'s `pvector` is used to create an immutable vector. Operations on the vector, such as appending an element, return a new vector without modifying the original one, thereby preserving immutability.
+
+\section{Advanced Example: Functional Data Processing Pipeline}
+To illustrate the power of combining these advanced functional programming techniques in Python, we will create a functional data processing pipeline. This pipeline will read data, transform it, and then aggregate the results. 
+
+\subsection{Pipeline Implementation}
+
+\begin{lstlisting}[language=Python, caption=Functional Data Processing Pipeline]
+from functools import partial
+
+# Sample data: list of dictionaries
+data = [
+    {'name': 'Alice', 'age': 30, 'salary': 70000},
+    {'name': 'Bob', 'age': 24, 'salary': 48000},
+    {'name': 'Charlie', 'age': 36, 'salary': 120000},
+    {'name': 'Diana', 'age': 28, 'salary': 60000},
+]
+
+# Function to filter employees by age
+def filter_by_age(min_age, person):
+    return person['age'] >= min_age
+
+# Function to transform data to extract salaries
+def extract_salary(person):
+    return person['salary']
+
+# Function to calculate average
+def average(salaries):
+    return sum(salaries) / len(salaries) if salaries else 0
+
+# Partial application of filter function
+filter_adults = partial(filter_by_age, 30)
+
+# Functional pipeline
+adult_salaries = map(extract_salary, filter(filter_adults, data))
+average_salary = average(list(adult_salaries))
+
+print(f"The average salary of employees aged 30 and above is: {average_salary}")
+\end{lstlisting}
+
+\subsection{Explanation}
+This pipeline demonstrates several key functional programming concepts:
+
+\begin{enumerate}
+    \item \textbf{Filtering with Partially Applied Functions}:
+    \begin{lstlisting}[language=Python]
+filter_adults = partial(filter_by_age, 30)
+\end{lstlisting}
+    - Here, the `filter\_by\_age` function is partially applied with the minimum age set to 30 using `partial` from the `functools` module. This creates a new function, `filter\_adults`, that can be used to filter out individuals below the age of 30.
+
+    \item \textbf{Mapping with Extracted Functions}:
+    \begin{lstlisting}[language=Python]
+adult_salaries = map(extract_salary, filter(filter_adults, data))
+\end{lstlisting}
+    - The `map` function is used to apply `extract\_salary` to each item in the filtered list, resulting in an iterator of salaries for individuals aged 30 and above.
+
+    \item \textbf{Aggregating with a Custom Average Function}:
+    \begin{lstlisting}[language=Python]
+average_salary = average(list(adult_salaries))
+\end{lstlisting}
+    - The `average` function computes the mean salary from the list of salaries obtained from the `map` function. Converting the iterator to a list ensures all items are processed before calculating the average.
+
+\end{enumerate}
+
+This example showcases the power of functional programming in creating modular, reusable, and readable data processing pipelines in Python.
 
 \newpage
 \section{Conclusion}
@@ -269,9 +400,9 @@ Functional programming is an essential paradigm that brings numerous benefits to
 
 By leveraging first-class functions, higher-order functions, and anonymous functions, Python enables the creation of concise and expressive functional programs. This report demonstrated how these features can be utilized to process a list of numbers in a functional style, showcasing the elegance and power of functional programming in Python.\\
 
-The example provided illustrates the functional programming principles of immutability and function composition, highlighting Python's capability to support these concepts. As the software industry continues to evolve, the ability to blend multiple programming paradigms within a single language becomes increasingly valuable. Python's support for functional programming enhances its flexibility and applicability across various domains and problem sets.\\
+The examples provided illustrate the functional programming principles of immutability and function composition, highlighting Python's capability to support these concepts. Additionally, advanced techniques such as currying, memoization, and functional data structures further enhance Python's functional programming capabilities. As the software industry continues to evolve, the ability to blend multiple programming paradigms within a single language becomes increasingly valuable. Python's support for functional programming enhances its flexibility and applicability across various domains and problem sets.\\
 
-Future work could explore more advanced functional programming techniques in Python, such as currying, memoization, and functional data structures. Additionally, integrating functional programming with Python's rich ecosystem of libraries can further enhance its utility in real-world applications.\\
+Future work could explore more advanced functional programming techniques in Python, such as currying, memoization, and functional data structures. Additionally, integrating functional programming with Python's rich ecosystem of libraries can further enhance its utility in real-world applications. Furthermore, the study of performance implications and optimization strategies for functional programs in Python could provide valuable insights for developers aiming to build efficient and scalable systems.\\
 
 
 \newpage
@@ -279,7 +410,9 @@ Future work could explore more advanced functional programming techniques in Pyt
 \begin{itemize}
     \item \href{https://docs.python.org/3/howto/functional.html}{Python Functional Programming HOWTO}
     \item \href{https://realpython.com/python-functional-programming/}{Real Python - Functional Programming in Python}
-    \item \href{https://en.wikipedia.org/wiki/Functional\_programming}{Wikipedia - Functional Programming}
+    \item \href{https://en.wikipedia.org/wiki/Functional_programming}{Wikipedia - Functional Programming}
+    \item \href{https://pypi.org/project/pyrsistent/}{Pyrsistent Documentation}
+    \item \href{https://www.learnpython.org/en/Functional_Programming}{Learn Python - Functional Programming}
 \end{itemize}
 
 \end{document}
