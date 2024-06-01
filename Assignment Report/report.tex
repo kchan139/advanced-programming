@@ -190,6 +190,9 @@ First-class functions are fundamental to functional programming as they allow fo
 Higher-order functions are functions that take other functions as arguments or return functions as their result. They are essential for functional programming as they enable the creation of more abstract and reusable code.\\
 
 \begin{lstlisting}[language=Python, caption=Higher-Order Functions]
+    def add(x, y):
+        return x + y
+
     def apply_function(f, x, y):
         return f(x, y)
 
@@ -306,7 +309,7 @@ Memoization is an optimization technique that stores the results of expensive fu
             return n
         return fibonacci(n-1) + fibonacci(n-2)
 
-        print(fibonacci(10))  # Output: 55
+    print(fibonacci(10))  # Output: 55
 \end{lstlisting}
 
 In this example, the \texttt{memoize} decorator caches the results of the \texttt{fibonacci} function. By doing so, it prevents redundant calculations and significantly enhances performance, particularly for functions with overlapping subproblems like the Fibonacci sequence.
